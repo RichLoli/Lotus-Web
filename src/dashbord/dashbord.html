@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/plugin/axios/axios.js"></script>
+    <script src="/plugin/loadsh/lodash.core.js"></script>
+    <script src="/plugin/d3/d3.js"></script>
+    <script src="/plugin/echarts/echarts.min.js"></script>
+    <script src="/plugin/jquery/jquery.js"></script>
+    <script src="/plugin/vue/vue.js"></script>
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" href="//unpkg.com/layui@2.6.8/dist/css/layui.css">
+    <!-- 引入 layui.js -->
+    <script src="//unpkg.com/layui@2.6.8/dist/layui.js"></script>
+
+    <title>仪表盘</title>
+    <style>
+        .layui-container {
+            margin: 0px !important;
+            width: auto !important;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app" class="layui-container">
+        <div class="layui-row layui-col-space14">
+            <div class="layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        关系图谱数量
+                    </div>
+                    <div class="layui-card-body">
+                        <charts-areas :chartsid="chart1"></charts-areas>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        人物节点数量
+                    </div>
+                    <div class="layui-card-body">
+                        <charts-areas :chartsid="chart2"></charts-areas>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        卡片面板
+                    </div>
+                    <div class="layui-card-body">
+                        <charts-areas :chartsid="chart3"></charts-areas>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        卡片面板
+                    </div>
+                    <div class="layui-card-body">
+                        <charts-areas :chartsid="chart4"></charts-areas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md9">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        关系图谱数量
+                    </div>
+                    <div class="layui-card-body">
+                        <charts-areas :chartsid="chart5"></charts-areas>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header">系统消息</div>
+                    <div class="layui-card-body">
+                            <ul class="layui-menu">
+                              <li>
+                                <div class="">menu item 1</div>
+                              </li>
+                              <li class="layui-menu-item-divider"></li>
+                              <li>
+                                <div class="">menu item 4</div>
+                              </li>
+                              <li class="layui-menu-item-divider"></li>
+                              <li>
+                                <div class="">menu item 6</div>
+                              </li>
+                              <li class="layui-menu-item-divider"></li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/js/components.js"></script>
+<script>
+
+
+    new Vue({
+        el: "#app",
+        data: {
+            chart1: "chart1",
+            chart2: "chart2",
+            chart3: "chart3",
+            chart4: "chart4",
+            chart5: "chart5",
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="/plugin/axios/axios.js"></script>
+    <script src="/plugin/loadsh/lodash.core.js"></script>
+    <script src="/plugin/d3/d3.js"></script>
+    <script src="/plugin/echarts/echarts.min.js"></script>
+    <script src="/plugin/jquery/jquery.js"></script>
+    <script src="/plugin/vue/vue.js"></script>
+    <!-- 引入 layui.css -->
+    <link rel="stylesheet" href="//unpkg.com/layui@2.6.8/dist/css/layui.css">
+    <!-- 引入 layui.js -->
+    <script src="//unpkg.com/layui@2.6.8/dist/layui.js"></script>
+
+    <link rel="stylesheet" href="/static/css/comm/m.css">
+    <title>知识关系图谱</title>
+    <style>
+        html {
+            background-color: aliceblue;
+        }
+
+        .layui-icon {
+            color: rgb(255, 255, 255);
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="sider-bar">
+            <ul class="layui-nav layui-nav-tree layui-nav-side" lay-filter="test">
+                <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+                <li class="layui-nav-item">
+                    <a class="menu-item text-center-title" href="javascript:;">
+                        知识图谱平台
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="menu-item" href="javascript:;" data-href="/dashbord/dashbord.html">
+                        <i class="layui-icon layui-icon-home"> </i>首页
+                    </a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-snowflake"> </i>关系图谱
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a class="menu-item" href="javascript:;" data-href="/releations/releation-list.html">
+                                <i class="layui-icon layui-icon-theme"> </i>关系图谱列表
+                            </a>
+                        </dd>
+                        <dd>
+                            <a class="menu-item" href="javascript:;" data-href="/releations/releation-list.html">
+                                <i class="layui-icon layui-icon-username"> </i>知识图谱列表</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <i class="layui-icon layui-icon-slider"> </i>平台管理
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a class="menu-item" href="javascript:;" data-href="/dashbord/dashbord.html">
+                                <i class="layui-icon layui-icon-theme"> </i>主题样式
+                            </a>
+                        </dd>
+                        <dd>
+                            <a class="menu-item" href="javascript:;" data-href="/dashbord/dashbord.html">
+                                <i class="layui-icon layui-icon-username"> </i>用户管理</a>
+                        </dd>
+                        <dd>
+                            <a class="menu-item" href="javascript:;" data-href="/dashbord/dashbord.html">
+                                <i class="layui-icon layui-icon-app"> </i>菜单管理</a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <div class="header-nav">
+                <ul class="layui-nav layui-bg-green">
+                    <li class="layui-nav-item" style="">
+                        <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img">个人中心</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">修改信息</a></dd>
+                            <dd><a href="javascript:;">安全管理</a></dd>
+                            <dd><a href="javascript:;">退出</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>
+            <div class="main-iframe">
+                <iframe id="maintainer" src="/src/releations/releation-view.html" frameborder="0" id="demoAdmin"
+                    style="width: 100%; height: 1250px; border-radius: 2px;"></iframe>
+            </div>
+            <p class="" style="text-align: center;position: fixed;bottom: 0px; right: 0px;">©Layui.com</p>
+        </div>
+    </div>
+</body>
+<script src="/static/js/comm.js"></script>
+<script>
+    $(function () {
+
+    });
+
+    $(".menu-item").click(function () {
+        $("#maintainer").attr("src", "/src" + $(this).attr("data-href"));
+    });
+
+
+</script>
+
+</html>
