@@ -8,7 +8,6 @@
 
     <script src="/plugin/axios/axios.js"></script>
     <script src="/plugin/loadsh/lodash.core.js"></script>
-    <script src="/plugin/d3/d3.js"></script>
     <script src="/plugin/echarts/echarts.min.js"></script>
     <script src="/plugin/jquery/jquery.js"></script>
     <script src="/plugin/vue/vue.js"></script>
@@ -23,15 +22,107 @@
             margin: 0px !important;
             width: auto !important;
         }
-
     </style>
 </head>
 
 <body>
+    <div id="app">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md6">
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>表单集合演示</legend>
+                </fieldset>
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">节点名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="title" required lay-verify="required" autocomplete="off"
+                                placeholder="请输入节点名称" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button type="submit" class="layui-btn" lay-submit="" lay-filter="formDemo">立即提交</button>
+                        </div>
+                    </div>
+                </form>
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>节点列表</legend>
+                </fieldset>
+                <div>
+                    <table class="layui-table" id="demo" lay-filter="demo"></table>
+                </div>
+            </div>
+            <div class="layui-col-md6">
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>图谱预览</legend>
+                </fieldset>
+                <div style="width: 850px; border: 1px black solid;">
+                    <force-map :width="850" :height="800" :graphs="graphs" :count="count"></force-map>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
+<script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="/static/js/components.js"></script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+</script>
 <script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            graphs: {
+                nodes: [],
+                links: []
+            },
+            count: 0
+        }
+    })
+
+    layui.use(['table', 'form'], function () {
+
+        var table = layui.table;
+
+        var form = layui.form;
+
+        //展示已知数据
+        table.render({
+            elem: '#demo'
+            , cellMinWidth: 80
+            , cols: [[ //标题栏
+                { field: 'id', title: 'ID', sort: true }
+                , { field: 'name', title: '节点名称' }
+                , { fixed: 'right', title: '操作', toolbar: '#barDemo' }
+            ]]
+            , page: true
+            , data: app.graphs.nodes
+            // ,skin: 'line'
+            , even: true
+        });
+        //监听工具条
+        table.on('tool(demo)', function (obj) {
+            var data = obj.data;
+            window.location.href = "/src/releations/releation-view.html"
+        });
+
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            app.graphs.nodes.push({
+                id: count,
+                x: 467,
+                y: 208,
+                name: data.field.title
+            })
+            app.count++;
+            table.reload('demo', {
+
+            });
+            return false;
+        });
+    });
 
 </script>
 
