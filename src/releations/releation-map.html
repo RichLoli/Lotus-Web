@@ -47,9 +47,10 @@
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script>
 
+    var graphs = JSON.parse(JSON.stringify(window.parent.graphs));
 
     function selectableForceDirectedGraph() {
-        var width = 1440,
+        var width = 800,
             height = 800,
             shiftKey, ctrlKey;
 
@@ -220,13 +221,9 @@
 
         }
 
-        async function initData() {
-            let graph = {};
-            await axios.get($conf.baseurl + "/api/force/"+queryVariable("map")+"/map")
-            .then(function(res){
-                graph = res.data.data;
-            })
-            .catch();
+        function initData() {
+
+            let graph = graphs;
 
             nodeGraph = graph;
 
@@ -306,10 +303,10 @@
                 .append("text")
                 .style("fill", "white")
                 .style("font-size", "20px")
-                .attr("dx", -35)
+                .attr("dx", -20)
                 .attr("dy", 5)
                 .attr("stroke", "white")
-                .text(function(d){
+                .text(function (d) {
                     return d.name;
                 })
 
@@ -324,13 +321,13 @@
                     .attr('cy', function (d) { return d.y; });
 
                 title.attr('x', function (d) { return d.x; })
-                    .attr('y', function (d) { return d.y; });
+                    .attr('y', function (d) { return d.y; })
 
             };
 
             force.on("tick", tick);
 
-        }initData();
+        } initData();
 
 
         function keydown() {

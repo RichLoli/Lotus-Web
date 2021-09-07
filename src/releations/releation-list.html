@@ -33,15 +33,16 @@
                 <legend>人物关系图谱列表</legend>
             </fieldset>
             <div>
-                <button class="btn-add layui-btn layui-btn-primary layui-border-green">添加关系图谱</button>            </div>
+                <button class="btn-add layui-btn layui-btn-primary layui-border-green">添加关系图谱</button>
+            </div>
             <table class="layui-table" id="demo" lay-filter="demo"></table>
         </div>
     </div>
 </body>
 <script src="/static/js/components.js"></script>
-
+<script src="/static/js/comm.js"></script>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑节点</a>
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="view">查看</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
@@ -51,120 +52,33 @@
         //展示已知数据
         table.render({
             elem: '#demo'
+            , url: $conf.baseurl + '/api/force/maps'
             , cellMinWidth: 80
             , cols: [[ //标题栏
                 { field: 'id', title: 'ID', sort: true }
-                , { field: 'username', title: '用户名' }
-                , { field: 'email', title: '邮箱' }
-                , { field: 'sign', title: '签名' }
-                , { field: 'sex', title: '性别' }
-                , { field: 'city', title: '城市' }
-                , { field: 'experience', title: '积分', sort: true }
+                , { field: 'name', title: '标题', sort: true }
+                , { field: 'type', title: '类型' }
+                , { field: 'createtime', title: '创建时间' }
                 , { fixed: 'right', title: '操作', toolbar: '#barDemo' }
             ]]
             , page: true
-            , data: [{
-                "id": "10001"
-                , "username": "杜甫"
-                , "email": "test@email.com"
-                , "sex": "男"
-                , "city": "浙江杭州"
-                , "sign": "人生恰似一场修行"
-                , "experience": "116"
-                , "ip": "192.168.0.8"
-                , "logins": "108"
-                , "joinTime": "2016-10-14"
-            }, {
-                "id": "10002"
-                , "username": "李白"
-                , "email": "test@email.com"
-                , "sex": "男"
-                , "city": "浙江杭州"
-                , "sign": "人生恰似一场修行"
-                , "experience": "12"
-                , "ip": "192.168.0.8"
-                , "logins": "106"
-                , "joinTime": "2016-10-14"
-                , "LAY_CHECKED": true
-            }, {
-                "id": "10003"
-                , "username": "王勃"
-                , "email": "test@email.com"
-                , "sex": "男"
-                , "city": "浙江杭州"
-                , "sign": "人生恰似一场修行"
-                , "experience": "65"
-                , "ip": "192.168.0.8"
-                , "logins": "106"
-                , "joinTime": "2016-10-14"
-            }, {
-                "id": "10004"
-                , "username": "贤心"
-                , "email": "test@email.com"
-                , "sex": "男"
-                , "city": "浙江杭州"
-                , "sign": "人生恰似一场修行"
-                , "experience": "666"
-                , "ip": "192.168.0.8"
-                , "logins": "106"
-                , "joinTime": "2016-10-14"
-            }, {
-                "id": "10005"
-                , "username": "贤心"
-                , "email": "test@email.com"
-                , "sex": "男"
-                , "city": "浙江杭州"
-                , "sign": "人生恰似一场修行"
-                , "experience": "86"
-                , "ip": "192.168.0.8"
-                , "logins": "106"
-                , "joinTime": "2016-10-14"
-            }, {
-                "id": "10006"
-                , "username": "贤心"
-                , "email": "test@email.com"
-                , "sex": "男"
-                , "city": "浙江杭州"
-                , "sign": "人生恰似一场修行"
-                , "experience": "12"
-                , "ip": "192.168.0.8"
-                , "logins": "106"
-                , "joinTime": "2016-10-14"
-            }, {
-                "id": "10007"
-                , "username": "贤心"
-                , "email": "test@email.com"
-                , "sex": "男"
-                , "city": "浙江杭州"
-                , "sign": "人生恰似一场修行"
-                , "experience": "16"
-                , "ip": "192.168.0.8"
-                , "logins": "106"
-                , "joinTime": "2016-10-14"
-            }, {
-                "id": "10008"
-                , "username": "贤心"
-                , "email": "test@email.com"
-                , "sex": "男"
-                , "city": "浙江杭州"
-                , "sign": "人生恰似一场修行"
-                , "experience": "106"
-                , "ip": "192.168.0.8"
-                , "logins": "106"
-                , "joinTime": "2016-10-14"
-            }]
+
             // ,skin: 'line'
             , even: true
         });
         //监听工具条
         table.on('tool(demo)', function (obj) {
             var data = obj.data;
-            window.location.href = "/src/releations/releation-view.html"
+            if ("edit" == obj) {
+                window.location.href = "/src/releations/releation-edit.html?map=" + data.id;
+            } else if ("view" == obj) {
+                window.location.href = "/src/releations/releation-view.html?map=" + data.id;
+            }
         });
 
     });
 
-    $(".btn-add").click(function(){
+    $(".btn-add").click(function () {
         window.location.href = "/src/releations/releation-create.html";
     });
 </script>
