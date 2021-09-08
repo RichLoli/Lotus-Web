@@ -63,6 +63,18 @@
 
         form.on('submit(formDemo)', function (data) {
             layer.msg(JSON.stringify(data.field));
+            $.ajax({
+                url: $conf.baseurl + "/api/force/map",
+                type: "post",
+                contentType: "application/json" ,
+                data : JSON.stringify(data.field),
+                success: function(){
+
+                },
+                error: function(){
+                    
+                }
+            })
             return false;
         });
 

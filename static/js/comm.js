@@ -2,6 +2,13 @@ var $conf = {
     baseurl: "http://localhost:8848"
 }
 
+
+$(function(){
+
+    sessionStorage.getItem("sessionid");
+
+});
+
 function queryVariable(variable)
 {
        var query = window.location.search.substring(1);

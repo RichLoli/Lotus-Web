@@ -69,9 +69,9 @@
         //监听工具条
         table.on('tool(demo)', function (obj) {
             var data = obj.data;
-            if ("edit" == obj) {
+            if ("edit" == obj.event) {
                 window.location.href = "/src/releations/releation-edit.html?map=" + data.id;
-            } else if ("view" == obj) {
+            } else if ("view" == obj.event) {
                 window.location.href = "/src/releations/releation-view.html?map=" + data.id;
             }
         });
