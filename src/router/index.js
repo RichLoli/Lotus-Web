@@ -27,15 +27,18 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   Progress.start()
-  //   let token = Cookies.get('token')
+
   if (to.path == '/login') {
     next()
   } else {
-    next('/login')
+    let token = Cookies.get('token')
+    if (undefined == token || null == token || '' === token) {
+      console.log('用户未登录')
+      next('/login')
+    } else {
+      next()
+    }
   }
-//   if (undefined == token || null == token || '' === token) {
-//     console.log('用户未登录')
-//   }
 })
 
 router.afterEach(() => {
