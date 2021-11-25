@@ -8,6 +8,7 @@ module.exports = {
         config.resolve.alias
             .set('@', resolve('src'))
     },
+
     devServer: {
         open: process.platform === 'darwin',
         host: '0.0.0.0',
@@ -18,5 +19,7 @@ module.exports = {
         before: (app) => {
             // `app` 是一个 express 实例
         },
-    }
+    },
+
+    runtimeCompiler: true
 }

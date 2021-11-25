@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     submitForm () {
-      this.$cookies.set("token","admin")
+      this.$cookies.set("token", "admin")
       this.$router.push('/')
     },
   }
@@ -183,9 +183,15 @@ export default {
 
 .links {
   margin-top: 20px;
+  color: #fff;
 }
 
 .links > a {
   padding: 0px 10px;
+  color: #fff;
+}
+
+.copyright {
+  color: #fff;
 }
 </style>
