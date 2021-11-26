@@ -3,7 +3,7 @@
     <el-menu
       default-active="1"
       class="sidebar-menu-el"
-      :collapse="this.$store.state.opened"
+      :collapse="this.$store.getters.sidebar.opened"
     >
       <el-menu-item index="1">
         <el-icon :size="20"><home-filled /></el-icon>
@@ -30,7 +30,7 @@ export default {
     }
   },
   mounted () {
-    console.log();
+    console.log(this.$store);
   }
 }
 </script>
