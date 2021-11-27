@@ -2,7 +2,9 @@
   <div class="navbar">
     <div class="navbar-menu">
       <div class="navbar-menu-item" @click="toggleSidebar">
-        <el-icon :size="25"><fold /></el-icon>
+        <el-icon :size="20">
+          <component :is="siderbarIcon"></component>
+        </el-icon>
       </div>
       <div class="navbar-menu-item">
         <div class="">
@@ -23,8 +25,14 @@
 <script>
 export default {
   name: "NavBar",
+  data () {
+    return {
+      siderbarIcon: "expand"
+    }
+  },
   methods: {
     toggleSidebar () {
+      this.siderbarIcon = this.siderbarIcon === "fold" ? "expand" : "fold"
       this.$store.dispatch("toggleSidebar")
     }
   }
@@ -32,7 +40,7 @@ export default {
 </script>
 <style>
 .navbar {
-  height: 60px;
+  height: 50px;
   background-color: #d5e2f1;
   min-width: 990px;
 }

@@ -4,5 +4,7 @@ a{
 }
 
 html{
-    font-family: "Helvetica Neue",Helvetica,"PingFang SC";
+    font-family: 'Microsoft YaHei', '微软雅黑';
+    background-color: rgb(230 235 243);
+    height: 100%;
 }

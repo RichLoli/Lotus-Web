@@ -3,7 +3,10 @@
     <div class="sidebar">
       <SideBar></SideBar>
     </div>
-    <div class="content" :class="{ 'sidebar-open': !this.$store.getters.sidebar.opened }">
+    <div
+      class="content"
+      :class="{ 'sidebar-open': !this.$store.getters.sidebar.opened }"
+    >
       <div class="content-nav">
         <NavBar></NavBar>
       </div>
@@ -37,12 +40,11 @@ export default {
 }
 
 .content {
-  margin-left: 65px;
+  margin-left: 64px;
   transition: all 0.3s ease-in-out;
 }
 
 .sidebar-open {
   margin-left: 220px;
 }
-
 </style>

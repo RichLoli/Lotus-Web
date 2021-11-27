@@ -17,3 +17,9 @@ installElementPlus(app)
 installElementPlusIcon(app)
 app.config.globalProperties.$cookies = Cookies
 app.use(store).use(router).mount('#app')
+
+if (process.env.NODE_ENV == 'development') {
+  app.config.devtools = true
+} else {
+  app.config.devtools = false
+}

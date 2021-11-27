@@ -7,6 +7,16 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('@/views/layout'),
+    children: [
+      {
+        path: 'graphs',
+        component: () => import('@/views/graphs'),
+      },
+      {
+        path: 'graphs/edit',
+        component: () => import('@/views/graphs/edit'),
+      },
+    ],
   },
   {
     path: '/login',
