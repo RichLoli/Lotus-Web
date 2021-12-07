@@ -11,9 +11,7 @@
         <NavBar></NavBar>
       </div>
       <div class="content-view">
-        <transition name="slide-fade">
           <router-view></router-view>
-        </transition>
       </div>
     </div>
   </div>

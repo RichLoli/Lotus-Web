@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     onSubmit () {
-
+        this.$refs.child.increment()
     }
   },
   data () {

@@ -17,6 +17,70 @@ export default {
       data
     }
   },
+  data () {
+    return {
+      graphs: {
+        nodes: [{
+          "id": "Myriel",
+          "group": 1
+        }, {
+          "id": "Napoleon",
+          "group": 1
+        }, {
+          "id": "Mlle.Baptistine",
+          "group": 1
+        }, {
+          "id": "Mme.Magloire",
+          "group": 1
+        }, {
+          "id": "CountessdeLo",
+          "group": 1
+        }, {
+          "id": "Geborand",
+          "group": 1
+        }, {
+          "id": "Champtercier",
+          "group": 1
+        }, {
+          "id": "Cravatte",
+          "group": 2
+        }, {
+          "id": "Count",
+          "group": 2
+        }, {
+          "id": "OldMan",
+          "group": 2
+        }, {
+          "id": "Labarre",
+          "group": 2
+        }, {
+          "id": "Valjean",
+          "group": 2
+        }],
+        links: [{
+          "source": "Napoleon",
+          "target": "Myriel",
+          "value": 1
+        }, {
+          "source": "Mlle.Baptistine",
+          "target": "Myriel",
+          "value": 8
+        }, {
+          "source": "Mme.Magloire",
+          "target": "Myriel",
+          "value": 10
+        }, {
+          "source": "Mme.Magloire",
+          "target": "Mlle.Baptistine",
+          "value": 6
+        }, {
+          "source": "CountessdeLo",
+          "target": "Myriel",
+          "value": 1
+        }]
+      }
+    }
+  },
   methods: {
     ForceGraph ({
       nodes, // an iterable of node objects (typically [{id}, …])
@@ -68,7 +132,7 @@ export default {
       if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
       if (linkStrength !== undefined) forceLink.strength(linkStrength);
 
-      forceLink.distance(575)
+      forceLink.distance(125)
 
       const simulation = d3.forceSimulation(nodes)
         .force("link", forceLink)
@@ -147,20 +211,36 @@ export default {
           .on("drag", dragged)
           .on("end", dragended);
       }
+    },
+    increment () {
+      this.graphs.nodes.push({
+        "id": "123123",
+        "group": 2
+      })
     }
-
   },
   mounted () {
-    axios.get('https://mock.mengxuegu.com/mock/619f2e8af720a73ceb75eb1e/example/data.json').then((res) => {
-      this.ForceGraph(res.data, {
-        nodeId: d => d.id,
-        nodeGroup: d => d.group,
-        nodeTitle: d => `${d.id}\n${d.group}`,
-        linkStrokeWidth: l => Math.sqrt(l.value),
-        width: 800,
-        height: 990,
-      })
+    // axios.get('https://mock.mengxuegu.com/mock/619f2e8af720a73ceb75eb1e/example/data.json').then((res) => {
+    //   this.ForceGraph(res.data, {
+    //     nodeId: d => d.id,
+    //     nodeGroup: d => d.group,
+    //     nodeTitle: d => `${d.id}\n${d.group}`,
+    //     linkStrokeWidth: l => Math.sqrt(l.value),
+    //     width: 900,
+    //     height: 600,
+    //   })
+    // })
+    this.ForceGraph(this.graphs, {
+      nodeId: d => d.id,
+      nodeGroup: d => d.group,
+      nodeTitle: d => `${d.id}\n${d.group}`,
+      linkStrokeWidth: l => Math.sqrt(l.value),
+      width: 900,
+      height: 600,
     })
+    // axios.get('https://mock.mengxuegu.com/mock/619f2e8af720a73ceb75eb1e/example/data.json_copy_1638866017654').then((res) => {
+
+    // })
 
   }
 }
